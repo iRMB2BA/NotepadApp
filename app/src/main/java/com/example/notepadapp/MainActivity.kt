@@ -20,13 +20,15 @@ class MainActivity : AppCompatActivity() {
         myDbManager.openDb()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        myDbManager.closeDb()
+    }
+
     fun onClickAddButton(view: View) {
         val intent = Intent(this, EditActivity::class.java)
         startActivity(intent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        myDbManager.closeDb()
-    }
+
 }
