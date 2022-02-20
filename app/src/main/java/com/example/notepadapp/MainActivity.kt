@@ -14,9 +14,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    override fun onResume() {
+        super.onResume()
+        myDbManager.openDb()
+        val dataList = myDbManager.readDbData()
+        for (item in dataList) {
+            findViewById<TextView>(R.id.tvTest).append("$item\n")
+        }
+    }
+
     fun onClickSave(view: View) {
         findViewById<TextView>(R.id.tvTest).text = ""
-        myDbManager.openDb()
         myDbManager.insertToDb(findViewById<EditText>(R.id.edTitle).text.toString(), findViewById<EditText>(R.id.edContent).text.toString())
         val dataList = myDbManager.readDbData()
         for (item in dataList) {
@@ -26,7 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        myDbManager.removeAll()
         myDbManager.closeDb()
     }
 }
