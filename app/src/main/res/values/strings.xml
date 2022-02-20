@@ -3,4 +3,10 @@
     <string name="title">Title</string>
     <string name="content">Content</string>
     <string name="save">SAVE</string>
+    <string name="addnote">add</string>
+    <string name="no_elements">No Elements</string>
+    <string name="name">Name</string>
+    <string name="name2">Name</string>
+    <string name="title2">Title</string>
+    <string name="todo">TODO</string>
 </resources>

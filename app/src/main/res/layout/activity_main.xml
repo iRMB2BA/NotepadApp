@@ -4,60 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#4A4A4A">
 
-    <TextView
-        android:id="@+id/tvTest"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/edContent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/edContent"
-        app:layout_constraintTop_toBottomOf="@+id/edContent"
-        android:layout_marginBottom="8dp"/>
-
-    <EditText
-        android:id="@+id/edTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:gravity="center"
-        android:hint="@string/title"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edContent"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:gravity="center|top|fill_vertical"
-        android:hint="@string/content"
-        android:inputType="textMultiLine|textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/edTitle"
-        app:layout_constraintStart_toStartOf="@+id/edTitle"
-        app:layout_constraintTop_toBottomOf="@+id/edTitle" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tvNoElements"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickSave"
-        android:text="@string/save"
+        android:text="@string/no_elements"
+        android:textColor="#979797"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvTest"
-        app:layout_constraintStart_toStartOf="@+id/tvTest" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rcView"
+        tools:ignore="TextContrastCheck" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/addnote"
+        android:focusable="true"
+        android:onClick="onClickAddButton"
+        app:backgroundTint="#1565C0"
+        app:layout_constraintBottom_toBottomOf="@+id/rcView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="@+id/rcView"
+        app:layout_constraintTop_toTopOf="@+id/rcView"
+        app:layout_constraintVertical_bias="0.977"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="ImageContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

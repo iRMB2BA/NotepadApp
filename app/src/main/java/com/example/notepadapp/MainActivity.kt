@@ -1,5 +1,6 @@
 package com.example.notepadapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,19 +18,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         myDbManager.openDb()
-        val dataList = myDbManager.readDbData()
-        for (item in dataList) {
-            findViewById<TextView>(R.id.tvTest).append("$item\n")
-        }
     }
 
-    fun onClickSave(view: View) {
-        findViewById<TextView>(R.id.tvTest).text = ""
-        myDbManager.insertToDb(findViewById<EditText>(R.id.edTitle).text.toString(), findViewById<EditText>(R.id.edContent).text.toString())
-        val dataList = myDbManager.readDbData()
-        for (item in dataList) {
-            findViewById<TextView>(R.id.tvTest).append("$item\n")
-        }
+    fun onClickAddButton(view: View) {
+        val intent = Intent(this, EditActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onDestroy() {
