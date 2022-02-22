@@ -42,7 +42,7 @@
         android:contentDescription="@string/addnote"
         android:focusable="true"
         android:onClick="onClickAddButton"
-        app:backgroundTint="#1565C0"
+        app:backgroundTint="#A4CBF8"
         app:layout_constraintBottom_toBottomOf="@+id/rcView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
