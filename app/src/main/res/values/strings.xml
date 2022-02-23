@@ -6,4 +6,5 @@
     <string name="addnote">add</string>
     <string name="no_elements">No Elements</string>
     <string name="todo">TODO</string>
+    <string name="EditContent">EditContent</string>
 </resources>

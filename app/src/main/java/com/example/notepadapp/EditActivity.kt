@@ -13,10 +13,11 @@ import com.example.notepadapp.db.MyIntentConstant
 class EditActivity : AppCompatActivity() {
 
     private val imageRequestCode = 10
+    var id = 0
+    var isEditState = false
     private var tempImageURL = "empty"
     private val myDbManager = MyDbManager(this)
     private lateinit var binding: ActivityEditBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityEditBinding.inflate(layoutInflater)
@@ -68,19 +69,29 @@ class EditActivity : AppCompatActivity() {
         val myContext = binding.edContext.text.toString()
 
         if (myTitle != "" && myContext != "") {
-            myDbManager.insertToDb(myTitle, myContext, tempImageURL)
+            if (isEditState) {
+                myDbManager.updateItem(myTitle, myContext, tempImageURL, id)
+            } else {
+                myDbManager.insertToDb(myTitle, myContext, tempImageURL)
+            }
             finish()
         }
     }
 
     private fun getMyIntents() {
         val i = intent
+        binding.floatingActionButton.visibility = View.GONE
 
         if (i != null) {
             if (i.getStringExtra(MyIntentConstant.I_TITLE_KEY) != null) {
                 binding.fbImageSave.visibility = View.GONE
                 binding.edTitle.setText(i.getStringExtra(MyIntentConstant.I_TITLE_KEY))
+                isEditState = true
+                binding.edTitle.isEnabled = false
+                binding.edContext.isEnabled = false
+                binding.floatingActionButton.visibility = View.VISIBLE
                 binding.edContext.setText(i.getStringExtra(MyIntentConstant.I_DISC_KEY))
+                id = i.getIntExtra(MyIntentConstant.I_ID_KEY, 0)
                 if (i.getStringExtra(MyIntentConstant.I_URL_KEY) != "empty") {
                     binding.mainImageLayout.visibility = View.VISIBLE
                     binding.imageView.setImageURI(Uri.parse(i.getStringExtra(MyIntentConstant.I_URL_KEY)))
@@ -89,5 +100,11 @@ class EditActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun onEditEnabled(view: View) {
+        binding.edTitle.isEnabled = true
+        binding.edContext.isEnabled = true
+        binding.floatingActionButton.visibility = View.GONE
     }
 }

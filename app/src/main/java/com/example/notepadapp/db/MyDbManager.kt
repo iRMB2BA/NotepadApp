@@ -22,6 +22,16 @@ class MyDbManager(context: Context) {
         db?.insert(MyDbNameClass.TABLE_NAME, null, values)
     }
 
+    fun updateItem(title: String, content: String, url: String, id: Int) {
+        val selection = BaseColumns._ID + "=$id"
+        val values = ContentValues().apply {
+            put(MyDbNameClass.COLUMN_NAME_TITLE, title)
+            put(MyDbNameClass.COLUMN_NAME_CONTENT, content)
+            put(MyDbNameClass.COLUMN_NAME_IMAGE_URL, url)
+        }
+        db?.update(MyDbNameClass.TABLE_NAME, values, selection, null)
+    }
+
     fun removeItemFromDb(id: String) {
         val selection = BaseColumns._ID + "=$id"
         db?.delete(MyDbNameClass.TABLE_NAME, selection, null)

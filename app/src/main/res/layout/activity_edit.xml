@@ -142,4 +142,18 @@
             tools:srcCompat="@tools:sample/avatars" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:onClick="onEditEnabled"
+        app:backgroundTint="#283593"
+        app:layout_constraintBottom_toBottomOf="@+id/edContext"
+        app:layout_constraintStart_toStartOf="@+id/edContext"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
