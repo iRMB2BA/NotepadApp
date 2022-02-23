@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+        initSearchView()
     }
 
     override fun onResume() {
@@ -47,8 +49,22 @@ class MainActivity : AppCompatActivity() {
         findViewById<RecyclerView>(R.id.rcView).adapter = myAdapter
     }
 
+    private fun initSearchView(){
+        findViewById<SearchView>(R.id.searchView).setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                val list = myDbManager.readDbData(p0!!)
+                myAdapter.updateAdapter(list)
+                return true
+            }
+        })
+    }
+
     private fun fillAdapter() {
-        val list = myDbManager.readDbData()
+        val list = myDbManager.readDbData("")
         myAdapter.updateAdapter(list)
         if (list.size > 0) {
             findViewById<TextView>(R.id.tvNoElements).visibility = View.GONE
@@ -75,5 +91,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
 }

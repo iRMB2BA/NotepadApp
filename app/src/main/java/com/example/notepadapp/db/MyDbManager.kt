@@ -27,13 +27,14 @@ class MyDbManager(context: Context) {
         db?.delete(MyDbNameClass.TABLE_NAME, selection, null)
     }
 
-    fun readDbData(): ArrayList<ListItem> {
+    fun readDbData(searchText: String): ArrayList<ListItem> {
         val dataList = ArrayList<ListItem>()
+        val selection = "${MyDbNameClass.COLUMN_NAME_TITLE} like ?"
         val cursor = db?.query(
             MyDbNameClass.TABLE_NAME,
             null,
-            null,
-            null,
+            selection,
+            arrayOf("%$searchText%"),
             null,
             null,
             null
@@ -61,10 +62,6 @@ class MyDbManager(context: Context) {
 
     fun closeDb() {
         myDbHelper.close()
-    }
-
-    fun removeAll() {
-        db?.delete(MyDbNameClass.TABLE_NAME, null, null)
     }
 
 }

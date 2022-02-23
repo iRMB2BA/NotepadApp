@@ -13,8 +13,8 @@ import com.example.notepadapp.db.MyIntentConstant
 class EditActivity : AppCompatActivity() {
 
     private val imageRequestCode = 10
-    var tempImageURL = "empty"
-    val myDbManager = MyDbManager(this)
+    private var tempImageURL = "empty"
+    private val myDbManager = MyDbManager(this)
     private lateinit var binding: ActivityEditBinding
 
 
@@ -56,7 +56,10 @@ class EditActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == imageRequestCode) {
             binding.imageView.setImageURI(data?.data)
             tempImageURL = data?.data.toString()
-            contentResolver.takePersistableUriPermission(data?.data!!, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            contentResolver.takePersistableUriPermission(
+                data?.data!!,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
         }
     }
 
@@ -70,7 +73,7 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-    fun getMyIntents() {
+    private fun getMyIntents() {
         val i = intent
 
         if (i != null) {
